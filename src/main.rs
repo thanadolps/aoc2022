@@ -1,7 +1,7 @@
 extern crate core;
 
 mod aoc1;
-// mod aoc2;
+mod aoc2;
 // mod aoc3;
 // mod aoc4;
 // mod aoc5;
@@ -30,8 +30,16 @@ fn generate_benchmark() {
             "input/aoc1.txt",
             aoc1::part_2,
         ),
-        // ("Day 2: Dive!, Part 1", "input/aoc2.txt", aoc2::part_1),
-        // ("Day 2: Dive!, Part 2", "input/aoc2.txt", aoc2::part_2),
+        (
+            "Day 2: Rock Paper Scissors, Part 1",
+            "input/aoc2.txt",
+            aoc2::part_1,
+        ),
+        (
+            "Day 2: Rock Paper Scissors, Part 2",
+            "input/aoc2.txt",
+            aoc2::part_2,
+        ),
         // (
         //     "Day 3: Binary Diagnostic, Part 1",
         //     "input/aoc3.txt",
