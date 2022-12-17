@@ -1,38 +1,37 @@
-use std::cmp::Ordering;
-
-use heapless::{binary_heap::Max, BinaryHeap};
+use itertools::Itertools;
 
 pub fn part_1(input: &str) -> usize {
-    let mut max = 0;
-    let mut acc = 0;
-
-    for line in input.lines() {
-        if let Some(x) = line.trim().parse::<usize>().ok() {
-            acc += x;
-        } else {
-            max = max.max(acc);
-            acc = 0;
-        }
-    }
-    max.max(acc)
+    input
+        .split("\n\n")
+        .map(|group| {
+            group
+                .lines()
+                .map(|line| {
+                    line.parse::<usize>()
+                        .expect("Each line must be an interger")
+                })
+                .sum()
+        })
+        .max()
+        .expect("Input isn't empty")
 }
 
 pub fn part_2(input: &str) -> usize {
-    let mut vals = Vec::new();
-    let mut acc = 0;
-
-    for line in input.lines() {
-        if let Some(x) = line.trim().parse::<usize>().ok() {
-            acc += x;
-        } else {
-            vals.push(acc);
-            acc = 0;
-        }
-    }
-    vals.push(acc);
-
-    vals.sort_unstable_by_key(|&x| std::cmp::Reverse(x));
-    vals[0] + vals[1] + vals[2]
+    input
+        .split("\n\n")
+        .map(|group| {
+            group
+                .lines()
+                .map(|line| {
+                    line.parse::<usize>()
+                        .expect("Each line must be an interger")
+                })
+                .sum::<usize>()
+        })
+        .map(std::cmp::Reverse)
+        .k_smallest(3)
+        .map(|x| x.0)
+        .sum()
 }
 
 #[cfg(test)]
@@ -40,38 +39,40 @@ mod tests {
     use super::*;
     use test_case::test_case;
 
-    #[test_case(r#"1000
-    2000
-    3000
-    
-    4000
-    
-    5000
-    6000
-    
-    7000
-    8000
-    9000
-    
-    10000"# => 24000)]
+    #[test_case(r#"
+1000
+2000
+3000
+
+4000
+
+5000
+6000
+
+7000
+8000
+9000
+
+10000"#.trim() => 24000; "part1")]
     fn part1(input: &str) -> usize {
         part_1(input)
     }
 
-    #[test_case(r#"1000
-    2000
-    3000
-    
-    4000
-    
-    5000
-    6000
-    
-    7000
-    8000
-    9000
-    
-    10000"# => 45000)]
+    #[test_case(r#"
+1000
+2000
+3000
+
+4000
+
+5000
+6000
+
+7000
+8000
+9000
+
+10000"#.trim() => 45000; "part2")]
     fn part2(input: &str) -> usize {
         part_2(input)
     }
