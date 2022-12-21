@@ -3,7 +3,7 @@ extern crate core;
 mod aoc1;
 mod aoc2;
 mod aoc3;
-// mod aoc4;
+mod aoc4;
 // mod aoc5;
 // mod aoc6;
 
@@ -50,8 +50,16 @@ fn generate_benchmark() {
             "input/aoc3.txt",
             aoc3::part_2,
         ),
-        // ("Day 4: Giant Squid, Part 1", "input/aoc4.txt", aoc4::part_1),
-        // ("Day 4: Giant Squid, Part 2", "input/aoc4.txt", aoc4::part_2),
+        (
+            "Day 4: Camp Cleanup, Part 1",
+            "input/aoc4.txt",
+            aoc4::part_1,
+        ),
+        (
+            "Day 4: Camp Cleanup, Part 2",
+            "input/aoc4.txt",
+            aoc4::part_2,
+        ),
         // (
         //     "Day 5: Hydrothermal Venture, Part 1",
         //     "input/aoc5.txt",
